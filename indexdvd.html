@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DVD Screensaver - Vecta Arcade</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
+      color: #333333;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    #counterBoard {
+      font-size: 16px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #444444;
+      user-select: none;
+    }
+    #cornerHighlight {
+      color: #22c55e;
+      transition: text-shadow 0.2s ease;
+    }
+    canvas {
+      background: #000000;
+      border: 4px solid #111;
+      border-radius: 8px;
+      display: block;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+    }
+    .hint {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #222222;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="counterBoard">Perfect Corner Hits: <span id="cornerHighlight">0</span></div>
+  
+  <canvas id="dvdCanvas" width="800" height="500"></canvas>
+  
+  <div class="hint">Sit back. Relax. Wait for the corner strike.</div>
+
+  <script>
+    const canvas = document.getElementById("dvdCanvas");
+    const ctx = canvas.getContext("2d");
+    const cornerHighlight = document.getElementById("cornerHighlight");
+
+    // Dimensions of the DVD text logo block
+    const logoWidth = 120;
+    const logoHeight = 50;
+
+    // Starting coordinate values (randomised slightly so it is dynamic)
+    let x = Math.random() * (canvas.width - logoWidth - 40) + 20;
+    let y = Math.random() * (canvas.height - logoHeight - 40) + 20;
+
+    // Movement velocity steps per frame execution
+    let dx = 3;
+    let dy = 3;
+
+    // Corner hits tracker metric
+    let cornerHits = 0;
+
+    // Dynamic color array selection rotation index
+    const tintShades = ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#ec4899", "#a855f7", "#06b6d4", "#22c55e"];
+    let currentTint = tintShades[0];
+
+    function changeColor() {
+      let nextTint = currentTint;
+      // Ensure the text changes color to a completely new shade every bounce
+      while (nextTint === currentTint) {
+        nextTint = tintShades[Math.floor(Math.random() * tintShades.length)];
+      }
+      currentTint = nextTint;
+    }
+
+    // Main layout execution drawing utility routines
+    function drawDVDLogo(xPos, yPos, color) {
+      ctx.fillStyle = color;
+      
+      // Draw background oval shape backing
+      ctx.beginPath();
+      ctx.ellipse(xPos + (logoWidth / 2), yPos + (logoHeight * 0.72), logoWidth * 0.4, logoHeight * 0.18, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.closePath();
+
+      // Punch out internal text window shapes via blending operations
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.ellipse(xPos + (logoWidth / 2), yPos + (logoHeight * 0.72), logoWidth * 0.36, logoHeight * 0.14, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.closePath();
+      
+      // Return drawing context configuration back to regular layout states
+      ctx.globalCompositeOperation = 'source-over';
+
+      // Draw standard clean "DVD" sans font characters
+      ctx.font = "bold 38px 'Arial Black', sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("DVD", xPos + (logoWidth / 2), yPos + (logoHeight * 0.4));
+      
+      // Draw standard lowercase "VIDEO" tag text accent underneath
+      ctx.font = "bold 13px Arial, sans-serif";
+      ctx.letterSpacing = "4px";
+      ctx.fillText("VIDEO", xPos + (logoWidth / 2), yPos + (logoHeight * 0.76));
+    }
+
+    // Engine loop routine tracking positional vector matrices
+    function updateFrame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      drawDVDLogo(x, y, currentTint);
+
+      let hitWallX = false;
+      let hitWallY = false;
+
+      // Check boundary edge metrics for X axes
+      if (x + dx > canvas.width - logoWidth || x + dx < 0) {
+        dx = -dx;
+        hitWallX = true;
+      }
+      
+      // Check boundary edge metrics for Y axes
+      if (y + dy > canvas.height - logoHeight || y + dy < 0) {
+        dy = -dy;
+        hitWallY = true;
+      }
+
+      // Handle color modifications on any impact event
+      if (hitWallX || hitWallY) {
+        changeColor();
+      }
+
+      // Detect rare occurrence structural matching perfect corner strikes
+      if (hitWallX && hitWallY) {
+        cornerHits++;
+        cornerHighlight.innerText = cornerHits;
+        cornerHighlight.style.textShadow = "0 0 15px #22c55e";
+        setTimeout(() => { cornerHighlight.style.textShadow = "none"; }, 800);
+      }
+
+      x += dx;
+      y += dy;
+      
+      requestAnimationFrame(updateFrame);
+    }
+
+    // Initialize application viewport update systems
+    updateFrame();
+  </script>
+</body>
+</html>

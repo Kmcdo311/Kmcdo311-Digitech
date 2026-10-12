@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vectile</title>
+  <link rel="icon" type="image/x-icon" href="video-game-icon-png.webp">
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    /* Reset & Dark Mode Theme matching your main page */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0b0b0b;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Left Sidebar Navigation Layout */
+    .sidebar {
+      width: 240px;
+      background-color: #000000;
+      border-right: 1px solid #1a1a1a;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      box-sizing: border-box;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .sidebar-brand img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* Navigation Link styling matching main dashboard */
+    .menu-link {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      color: #a3a3a3;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .menu-link:hover {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+
+    /* Main Content Panel pushed to the right of the Sidebar */
+    .content-wrapper {
+      margin-left: 240px;
+      flex: 1;
+      padding: 40px 50px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centers your game container content */
+    }
+
+    /* Game Layout Grouping container block */
+    .game-container {
+      width: 1280px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .game-title {
+      font-size: 48px;
+      font-weight: 800;
+      margin: 0 0 25px 0;
+      letter-spacing: -1px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    /* Unity Game Iframe container configuration */
+    .unity-frame {
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 20px;
+      background-color: #121212;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Identical Left Navigation Menu Block -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <img src="video-game-icon-png.webp" alt="Icon">
+      <span>Games</span>
+    </div>
+    <nav class="sidebar-menu">
+      <!-- Links back to your main dashboard page file (index.html) -->
+      <a href="homepage.html" class="menu-link">🏠 Main Page</a>
+    </nav>
+  </aside>
+
+  <!-- Content Canvas Area -->
+  <main class="content-wrapper">
+    <div class="game-container">
+
+      <!-- Left-aligned Game Title shifted matching clean font profiles -->
+      <h1 class="game-title">DvD</h1>
+      
+      <!-- Your 1280x720 Unity Game Frame layout -->
+      <iframe src="indexdvd.html" width="1280" height="720" allowfullscreen class="unity-frame"></iframe>
+
+    </div>
+  </main>
+
+</body>
+</html>

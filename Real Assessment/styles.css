@@ -1,0 +1,268 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #ffffff;
+  width: 700px;
+}
+
+header {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+header p {
+  text-align: center;
+}
+
+header img {
+  width: 500px;
+  height: 300px;
+}
+
+h1 {
+  font-size: 2em;
+  text-align: center;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}
+
+h6 {
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+h2 {
+  text-align: center;
+}
+
+.info-box {
+  border: 1px solid #800080;
+  padding: 10px;
+  margin: 15px 0;
+  background-color: #0000FF;
+}
+
+a {
+  animation-name: Rainbow;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes Rainbow {
+  0%   {color: red;}
+  10%  {color: orange;}
+  25%  {color: yellow;}
+  50%  {color: green;}
+  75%  {color: seagreen;}
+  100%  {color: purple;}
+}
+
+footer {
+  text-align: left;
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+h4 {
+   position: relative;
+   animation-name: mymove;
+   animation-timing-function: linear;
+   animation-duration: 3s;
+   animation-fill-mode: forwards;
+   animation-iteration-count: infinite;
+   width: 150px;
+}
+
+@keyframes mymove {
+  from {left: 0px;}
+  to {left: 500px;}
+}
+ 
+@keyframes square-animation {
+ 0% {
+  left: 0;
+  top: 0;
+ }
+
+ 10.5% {
+  left: 0;
+  top: 0;
+ }
+
+ 12.5% {
+  left: 32px;
+  top: 0;
+ }
+
+ 23% {
+  left: 32px;
+  top: 0;
+ }
+
+ 25% {
+  left: 64px;
+  top: 0;
+ }
+
+ 35.5% {
+  left: 64px;
+  top: 0;
+ }
+
+ 37.5% {
+  left: 64px;
+  top: 32px;
+ }
+
+ 48% {
+  left: 64px;
+  top: 32px;
+ }
+
+ 50% {
+  left: 32px;
+  top: 32px;
+ }
+
+ 60.5% {
+  left: 32px;
+  top: 32px;
+ }
+
+ 62.5% {
+  left: 32px;
+  top: 64px;
+ }
+
+ 73% {
+  left: 32px;
+  top: 64px;
+ }
+
+ 75% {
+  left: 0;
+  top: 64px;
+ }
+
+ 85.5% {
+  left: 0;
+  top: 64px;
+ }
+
+ 87.5% {
+  left: 0;
+  top: 32px;
+ }
+
+ 98% {
+  left: 0;
+  top: 32px;
+ }
+
+ 100% {
+  left: 0;
+  top: 0;
+ }
+}
+
+.loader {
+  margin: auto;
+ position: relative;
+ width: 96px;
+ height: 96px;
+ transform: rotate(45deg);
+}
+
+.loader-square {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 28px;
+ height: 28px;
+ margin: 2px;
+ border-radius: 0px;
+ background: white;
+ background-size: cover;
+ background-position: center;
+ background-attachment: fixed;
+ animation: square-animation 10s ease-in-out infinite both;
+}
+
+.loader-square:nth-of-type(0) {
+ animation-delay: 0s;
+}
+
+.loader-square:nth-of-type(1) {
+ animation-delay: -1.4285714286s;
+}
+
+.loader-square:nth-of-type(2) {
+ animation-delay: -2.8571428571s;
+}
+
+.loader-square:nth-of-type(3) {
+ animation-delay: -4.2857142857s;
+}
+
+.loader-square:nth-of-type(4) {
+ animation-delay: -5.7142857143s;
+}
+
+.loader-square:nth-of-type(5) {
+ animation-delay: -7.1428571429s;
+}
+
+.loader-square:nth-of-type(6) {
+ animation-delay: -8.5714285714s;
+}
+
+.loader-square:nth-of-type(7) {
+ animation-delay: -10s;
+}
+body{
+    font-family: Arial;
+}
+
+.container{
+    display: flex;
+    gap: 80px;
+    justify-content: center;
+}
+
+.oval{
+    background-color: #3da0ff;
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    font-size: 18px;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.oval:hover{
+    background-color: #1c7ed6;
+}
+
+.hiddenText{
+    display: none;
+    margin-top: 15px;
+    background-color: #f2f2f2;
+    padding: 15px;
+    width: 250px;
+    border-radius: 12px;
+}
+
+.show{
+    display: block;
+}
